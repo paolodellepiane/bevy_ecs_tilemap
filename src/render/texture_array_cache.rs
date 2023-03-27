@@ -251,7 +251,6 @@ impl TextureArrayCache {
                             (i as f32 % columns).floor() * (tile_size.x + spacing.x + 8.) + spacing.x + 4.;
                         let sprite_sheet_y: f32 =
                             (i as f32 / columns).floor() * (tile_size.y + spacing.y + 8.) + spacing.y + 4.;
-                        dbg!(i, sprite_sheet_x, sprite_sheet_y);
                         command_encoder.copy_texture_to_texture(
                             ImageCopyTexture {
                                 texture: &gpu_image.texture,
