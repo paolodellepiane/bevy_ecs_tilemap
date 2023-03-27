@@ -97,8 +97,8 @@ impl ExtractedTilemapTexture {
                     it is being extracted as a texture!",
                 );
                 let texture_size: TilemapTextureSize = image.size().into();
-                let tile_count_x = ((texture_size.x) / (tile_size.x + tile_spacing.x)).floor();
-                let tile_count_y = ((texture_size.y) / (tile_size.y + tile_spacing.y)).floor();
+                let tile_count_x = ((texture_size.x) / (tile_size.x + tile_spacing.x + 8.)).floor();
+                let tile_count_y = ((texture_size.y) / (tile_size.y + tile_spacing.y + 8.)).floor();
                 (
                     (tile_count_x * tile_count_y) as u32,
                     texture_size,

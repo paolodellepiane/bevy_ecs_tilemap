@@ -77,8 +77,8 @@ impl TextureArrayCache {
                     it is being extracted as a texture!",
                 );
                 let texture_size: TilemapTextureSize = image.size().into();
-                let tile_count_x = ((texture_size.x) / (tile_size.x + tile_spacing.x)).floor();
-                let tile_count_y = ((texture_size.y) / (tile_size.y + tile_spacing.y)).floor();
+                let tile_count_x = ((texture_size.x) / (tile_size.x + tile_spacing.x + 8.)).floor();
+                let tile_count_y = ((texture_size.y) / (tile_size.y + tile_spacing.y + 8.)).floor();
                 ((tile_count_x * tile_count_y) as u32, texture_size)
             }
             TilemapTexture::Vector(handles) => {
@@ -248,10 +248,10 @@ impl TextureArrayCache {
                     for i in 0..count {
                         let columns = (texture_size.x / (tile_size.x + spacing.x)).floor();
                         let sprite_sheet_x: f32 =
-                            (i as f32 % columns).floor() * (tile_size.x + spacing.x) + spacing.x;
+                            (i as f32 % columns).floor() * (tile_size.x + spacing.x + 8.) + spacing.x + 4.;
                         let sprite_sheet_y: f32 =
-                            (i as f32 / columns).floor() * (tile_size.y + spacing.y) + spacing.y;
-
+                            (i as f32 / columns).floor() * (tile_size.y + spacing.y + 8.) + spacing.y + 4.;
+                        dbg!(i, sprite_sheet_x, sprite_sheet_y);
                         command_encoder.copy_texture_to_texture(
                             ImageCopyTexture {
                                 texture: &gpu_image.texture,

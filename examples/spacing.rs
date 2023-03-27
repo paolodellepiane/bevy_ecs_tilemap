@@ -14,14 +14,14 @@ fn startup(mut commands: Commands, asset_server: Res<AssetServer>) {
     let tilemap_entity = commands.spawn_empty().id();
 
     fill_tilemap(
-        TileTextureIndex(0),
+        TileTextureIndex(2),
         map_size,
         TilemapId(tilemap_entity),
         &mut commands,
         &mut tile_storage,
     );
 
-    let tile_size = TilemapTileSize { x: 16.0, y: 16.0 };
+    let tile_size = TilemapTileSize { x: 8.0, y: 8.0 };
     let grid_size = tile_size.into();
     let map_type = TilemapType::default();
 
@@ -37,29 +37,30 @@ fn startup(mut commands: Commands, asset_server: Res<AssetServer>) {
         ..Default::default()
     });
 
-    // Layer 2
-    let mut tile_storage = TileStorage::empty(map_size);
-    let tilemap_entity = commands.spawn_empty().id();
+    // // Layer 2
+    // let mut tile_storage = TileStorage::empty(map_size);
+    // let tilemap_entity = commands.spawn_empty().id();
 
-    fill_tilemap(
-        TileTextureIndex(2),
-        map_size,
-        TilemapId(tilemap_entity),
-        &mut commands,
-        &mut tile_storage,
-    );
+    // fill_tilemap(
+    //     TileTextureIndex(2),
+    //     map_size,
+    //     TilemapId(tilemap_entity),
+    //     &mut commands,
+    //     &mut tile_storage,
+    // );
 
-    commands.entity(tilemap_entity).insert(TilemapBundle {
-        grid_size,
-        map_type,
-        size: map_size,
-        storage: tile_storage,
-        texture: TilemapTexture::Single(texture_handle),
-        tile_size: TilemapTileSize { x: 16.0, y: 16.0 },
-        transform: get_tilemap_center_transform(&map_size, &grid_size, &map_type, 1.0)
-            * Transform::from_xyz(32.0, 32.0, 0.0),
-        ..Default::default()
-    });
+    // commands.entity(tilemap_entity).insert(TilemapBundle {
+    //     grid_size,
+    //     map_type,
+    //     size: map_size,
+    //     storage: tile_storage,
+    //     texture: TilemapTexture::Single(texture_handle),
+    //     tile_size: TilemapTileSize { x: 12.0, y: 12.0 },
+    //     spacing: TilemapSpacing { x: 8.0, y: 8.0 },
+    //     transform: get_tilemap_center_transform(&map_size, &grid_size, &map_type, 1.0)
+    //         * Transform::from_xyz(32.0, 32.0, 0.0),
+    //     ..Default::default()
+    // });
 }
 
 fn main() {
